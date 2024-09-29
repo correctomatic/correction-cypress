@@ -49,3 +49,27 @@ If there are no results, it means all processes in that session were successfull
 Important Note
 The negative sign before the SID indicates that you want to send the signal to all processes in that session.
 Ensure you have the necessary permissions to kill these processes.
+
+
+
+----------------
+
+
+DevTools listening on ws://127.0.0.1:41611/devtools/browser/b9bda263-665f-4d50-935b-6f8950e863a8
+libva error: vaGetDriverNameByIndex() failed with unknown libva error, driver_name = (null)
+
+Ensure you have the necessary VA-API drivers installed. For example, on Ubuntu, you can run:
+
+bash
+Copy code
+sudo apt install vainfo
+For Intel:
+
+bash
+Copy code
+sudo apt install intel-media-va-driver
+For AMD:
+
+bash
+Copy code
+sudo apt install mesa-va-drivers
