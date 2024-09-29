@@ -1,3 +1,7 @@
+https://medium.com/@pipulpant/handling-custom-errors-in-cypress-f1daf1931b64
+
+
+
 To kill processes that were started in a session using setsid, you can follow these steps:
 
 1. Start a Process with setsid
@@ -73,3 +77,10 @@ For AMD:
 bash
 Copy code
 sudo apt install mesa-va-drivers
+
+
+----------------
+
+Debugging:
+
+https://stackoverflow.com/questions/52502130/debugging-cypress-tests-in-visual-studio-code

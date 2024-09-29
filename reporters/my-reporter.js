@@ -29,14 +29,16 @@ class MyReporter extends reporters.Base {
 
     runner.on('pass', (test) => {
       console.log(`Test Passed: ${test.title}`)
-      console.log(safeStringify(test))
+      // console.log(safeStringify(test))
       console.log('-----------------------------------')
     })
 
     runner.on('fail', (test, err) => {
-      console.log(`Test Failed: ${test.title} - ${err.message}`)
-      console.log(safeStringify(test))
-      console.log(safeStringify(err))
+      console.log(`Test Failed: ${test.title}`)
+      console.log(`${err.message}`)
+      // console.log(`Test Failed: ${test.title} - ${err.message}`)
+      // console.log(safeStringify(test))
+      // console.log(safeStringify(err))
       console.log('-----------------------------------')
     })
 

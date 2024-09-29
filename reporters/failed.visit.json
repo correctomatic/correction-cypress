@@ -1,0 +1,208 @@
+{
+  "message": "`cy.visit()` failed trying to load:\n\nhttp://localhost:8080/\n\nWe attempted to make an http request to this URL but the request failed without a response.\n\nWe received this error at the network level:\n\n  > Error: connect ECONNREFUSED 127.0.0.1:8080\n\nCommon situations why this would fail:\n  - you don't have internet access\n  - you forgot to run / boot your web server\n  - your web server isn't accessible\n  - you have weird network configuration settings on your computer\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Test page shape`",
+  "name": "CypressError",
+  "stack": "CypressError: `cy.visit()` failed trying to load:\n\nhttp://localhost:8080/\n\nWe attempted to make an http request to this URL but the request failed without a response.\n\nWe received this error at the network level:\n\n  > Error: connect ECONNREFUSED 127.0.0.1:8080\n\nCommon situations why this would fail:\n  - you don't have internet access\n  - you forgot to run / boot your web server\n  - your web server isn't accessible\n  - you have weird network configuration settings on your computer\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Test page shape`\n    at <unknown> (http://localhost:43079/__cypress/runner/cypress_runner.js:131650:74)\n    at visitFailedByErr (http://localhost:43079/__cypress/runner/cypress_runner.js:131049:12)\n    at <unknown> (http://localhost:43079/__cypress/runner/cypress_runner.js:131649:11)\n    at tryCatcher (http://localhost:43079/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (http://localhost:43079/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (http://localhost:43079/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (http://localhost:43079/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (http://localhost:43079/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (http://localhost:43079/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (http://localhost:43079/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (http://localhost:43079/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (http://localhost:43079/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://correction-dwec-cypress-test/./cypress/e2e/vite-app.cy.js:7:7)\n\nFrom Node.js Internals:\n  Error: connect ECONNREFUSED 127.0.0.1:8080\n      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1495:16)",
+  "parsedStack": [
+    {
+      "message": "CypressError: `cy.visit()` failed trying to load:",
+      "whitespace": ""
+    },
+    {
+      "message": "",
+      "whitespace": ""
+    },
+    {
+      "message": "http://localhost:8080/",
+      "whitespace": ""
+    },
+    {
+      "message": "",
+      "whitespace": ""
+    },
+    {
+      "message": "We attempted to make an http request to this URL but the request failed without a response.",
+      "whitespace": ""
+    },
+    {
+      "message": "",
+      "whitespace": ""
+    },
+    {
+      "message": "We received this error at the network level:",
+      "whitespace": ""
+    },
+    {
+      "message": "",
+      "whitespace": ""
+    },
+    {
+      "message": "> Error: connect ECONNREFUSED 127.0.0.1:8080",
+      "whitespace": "  "
+    },
+    {
+      "message": "",
+      "whitespace": ""
+    },
+    {
+      "message": "Common situations why this would fail:",
+      "whitespace": ""
+    },
+    {
+      "message": "- you don't have internet access",
+      "whitespace": "  "
+    },
+    {
+      "message": "- you forgot to run / boot your web server",
+      "whitespace": "  "
+    },
+    {
+      "message": "- your web server isn't accessible",
+      "whitespace": "  "
+    },
+    {
+      "message": "- you have weird network configuration settings on your computer",
+      "whitespace": "  "
+    },
+    {
+      "function": "<unknown>",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 131650,
+      "column": 74,
+      "whitespace": "    "
+    },
+    {
+      "function": "visitFailedByErr",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 131049,
+      "column": 12,
+      "whitespace": "    "
+    },
+    {
+      "function": "<unknown>",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 131649,
+      "column": 11,
+      "whitespace": "    "
+    },
+    {
+      "function": "tryCatcher",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 1807,
+      "column": 23,
+      "whitespace": "    "
+    },
+    {
+      "function": "Promise._settlePromiseFromHandler",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 1519,
+      "column": 31,
+      "whitespace": "    "
+    },
+    {
+      "function": "Promise._settlePromise",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 1576,
+      "column": 18,
+      "whitespace": "    "
+    },
+    {
+      "function": "Promise._settlePromise0",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 1621,
+      "column": 10,
+      "whitespace": "    "
+    },
+    {
+      "function": "Promise._settlePromises",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 1697,
+      "column": 18,
+      "whitespace": "    "
+    },
+    {
+      "function": "_drainQueueStep",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 2407,
+      "column": 12,
+      "whitespace": "    "
+    },
+    {
+      "function": "_drainQueue",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 2400,
+      "column": 9,
+      "whitespace": "    "
+    },
+    {
+      "function": "Async._drainQueues",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 2416,
+      "column": 5,
+      "whitespace": "    "
+    },
+    {
+      "function": "Async.drainQueues",
+      "fileUrl": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "originalFile": "http://localhost:43079/__cypress/runner/cypress_runner.js",
+      "line": 2286,
+      "column": 14,
+      "whitespace": "    "
+    },
+    {
+      "message": "From Your Spec Code:",
+      "whitespace": ""
+    },
+    {
+      "function": "Context.eval",
+      "fileUrl": "http://localhost:43079/__cypress/tests?p=cypress/e2e/vite-app.cy.js",
+      "originalFile": "webpack://correction-dwec-cypress-test/./cypress/e2e/vite-app.cy.js",
+      "relativeFile": "cypress/e2e/vite-app.cy.js",
+      "absoluteFile": "/data/alvaro/Software/CEED/correctomatic-dwec/correction-dwec-cypress-test/cypress/e2e/vite-app.cy.js",
+      "line": 7,
+      "column": 7,
+      "whitespace": "    "
+    },
+    {
+      "message": "",
+      "whitespace": ""
+    },
+    {
+      "message": "From Node.js Internals:",
+      "whitespace": ""
+    },
+    {
+      "message": "Error: connect ECONNREFUSED 127.0.0.1:8080",
+      "whitespace": "  "
+    },
+    {
+      "function": "TCPConnectWrap.afterConnect [as oncomplete]",
+      "fileUrl": "node:net",
+      "originalFile": "node:net",
+      "relativeFile": "node:net",
+      "absoluteFile": "/data/alvaro/Software/CEED/correctomatic-dwec/correction-dwec-cypress-test/node:net",
+      "line": 1495,
+      "column": 16,
+      "whitespace": "      "
+    }
+  ],
+  "codeFrame": {
+    "line": 7,
+    "column": 8,
+    "originalFile": "cypress/e2e/vite-app.cy.js",
+    "relativeFile": "cypress/e2e/vite-app.cy.js",
+    "absoluteFile": "/data/alvaro/Software/CEED/correctomatic-dwec/correction-dwec-cypress-test/cypress/e2e/vite-app.cy.js",
+    "frame": "   5 |\n   6 |   beforeEach(() => {\n>  7 |     cy.visit('http://localhost:8080') // Adjust the URL based on your dev server\n     |        ^\n   8 |     .then(() => {\n   9 |       // Log success message\n  10 |       cy.log('Successfully visited the application.');",
+    "language": "js"
+  }
+}

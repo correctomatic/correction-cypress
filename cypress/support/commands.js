@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// https://medium.com/@pipulpant/handling-custom-errors-in-cypress-f1daf1931b64
+Cypress.Commands.add('step', description => {
+  const MAX_ITEMS_IN_STACK = 5
+  const arr = Cypress.env('step') || []
+  arr.push(description)
+  if (arr.length > MAX_ITEMS_IN_STACK) {
+    arr.shift()
+  }
+  Cypress.env('step', arr)
+})
