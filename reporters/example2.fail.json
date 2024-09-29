@@ -1,0 +1,149 @@
+{
+  "title": "has working counter",
+  "body": "() => {\n    cy.get('button').contains('count is').should('be.visible'); // Check for counter button\n    cy.get('button').click().contains('count is 3'); // Click and check if count increases\n  }",
+  "_timeout": 2000,
+  "_slow": 10000,
+  "_enableTimeouts": true,
+  "_retries": 0,
+  "_currentRetry": 0,
+  "pending": false,
+  "type": "test",
+  "state": "failed",
+  "parent": {
+    "title": "Test page behaviour",
+    "ctx": {},
+    "suites": [],
+    "tests": [
+      {
+        "title": "has working counter",
+        "body": "() => {\n    cy.get('button').contains('count is').should('be.visible'); // Check for counter button\n    cy.get('button').click().contains('count is 3'); // Click and check if count increases\n  }",
+        "_timeout": 2000,
+        "_slow": 10000,
+        "_enableTimeouts": true,
+        "_retries": 0,
+        "_currentRetry": 0,
+        "pending": false,
+        "type": "test",
+        "state": "failed",
+        "id": "r3",
+        "_testConfig": {
+          "testConfigList": [],
+          "unverifiedTestConfig": {},
+          "applied": "complete"
+        },
+        "order": 1,
+        "file": null,
+        "invocationDetails": {
+          "function": "Suite.eval",
+          "fileUrl": "http://localhost:8080/__cypress/tests?p=cypress/e2e/vite-app2.cy.js",
+          "originalFile": "webpack://correction-dwec-cypress-test/./cypress/e2e/vite-app2.cy.js",
+          "relativeFile": "cypress/e2e/vite-app2.cy.js",
+          "absoluteFile": "/data/alvaro/Software/CEED/correctomatic-dwec/correction-dwec-cypress-test/cypress/e2e/vite-app2.cy.js",
+          "line": 6,
+          "column": 2,
+          "whitespace": "    ",
+          "stack": "Error\n    at Suite.eval (http://localhost:8080/__cypress/tests?p=cypress/e2e/vite-app2.cy.js:13:3)\n    at eval (http://localhost:8080/__cypress/tests?p=cypress/e2e/vite-app2.cy.js:9:1)\n    at eval (http://localhost:8080/__cypress/tests?p=cypress/e2e/vite-app2.cy.js:18:12)\n    at eval (<anonymous>)"
+        },
+        "wallClockStartedAt": "2024-09-29T12:35:15.058Z",
+        "err": {
+          "message": "Timed out retrying after 4000ms: Expected to find content: 'count is 3' within the element: <button#counter> but never did.",
+          "type": "existence",
+          "name": "AssertionError",
+          "stack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'count is 3' within the element: <button#counter> but never did.\n    at Context.eval (webpack://correction-dwec-cypress-test/./cypress/e2e/vite-app2.cy.js:8:29)",
+          "parsedStack": [
+            {
+              "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'count is 3' within the element: <button#counter> but never did.",
+              "whitespace": ""
+            },
+            {
+              "function": "Context.eval",
+              "fileUrl": "http://localhost:8080/__cypress/tests?p=cypress/e2e/vite-app2.cy.js",
+              "originalFile": "webpack://correction-dwec-cypress-test/./cypress/e2e/vite-app2.cy.js",
+              "relativeFile": "cypress/e2e/vite-app2.cy.js",
+              "absoluteFile": "/data/alvaro/Software/CEED/correctomatic-dwec/correction-dwec-cypress-test/cypress/e2e/vite-app2.cy.js",
+              "line": 8,
+              "column": 29,
+              "whitespace": "    "
+            }
+          ],
+          "codeFrame": {
+            "line": 8,
+            "column": 30,
+            "originalFile": "cypress/e2e/vite-app2.cy.js",
+            "relativeFile": "cypress/e2e/vite-app2.cy.js",
+            "absoluteFile": "/data/alvaro/Software/CEED/correctomatic-dwec/correction-dwec-cypress-test/cypress/e2e/vite-app2.cy.js",
+            "frame": "   6 |   it('has working counter', () => {\n   7 |     cy.get('button').contains('count is').should('be.visible')  // Check for counter button\n>  8 |     cy.get('button').click().contains('count is 3')  // Click and check if count increases\n     |                              ^\n   9 |   })\n  10 |\n  11 | })",
+            "language": "js"
+          }
+        }
+      }
+    ],
+    "pending": false,
+    "_beforeEach": [],
+    "_beforeAll": [],
+    "_afterEach": [],
+    "_afterAll": [],
+    "root": false,
+    "_timeout": 2000,
+    "_enableTimeouts": true,
+    "_slow": 10000,
+    "_bail": false,
+    "_retries": -1,
+    "_onlyTests": [],
+    "_onlySuites": [],
+    "delayed": false,
+    "_events": {},
+    "_eventsCount": 1,
+    "parent": {
+      "title": "",
+      "ctx": {},
+      "suites": [
+        null
+      ],
+      "tests": [],
+      "pending": false,
+      "_beforeEach": [],
+      "_beforeAll": [],
+      "_afterEach": [],
+      "_afterAll": [],
+      "root": true,
+      "_timeout": 2000,
+      "_enableTimeouts": true,
+      "_slow": 10000,
+      "_bail": false,
+      "_retries": -1,
+      "_onlyTests": [],
+      "_onlySuites": [],
+      "delayed": false,
+      "_events": {},
+      "_eventsCount": 1,
+      "file": "cypress/e2e/vite-app2.cy.js",
+      "id": "r1",
+      "type": "suite"
+    },
+    "file": null,
+    "id": "r2",
+    "type": "suite",
+    "invocationDetails": {
+      "function": "eval",
+      "fileUrl": "http://localhost:46665/__cypress/tests?p=cypress/e2e/vite-app2.cy.js",
+      "originalFile": "webpack://correction-dwec-cypress-test/./cypress/e2e/vite-app2.cy.js",
+      "relativeFile": "cypress/e2e/vite-app2.cy.js",
+      "absoluteFile": "/data/alvaro/Software/CEED/correctomatic-dwec/correction-dwec-cypress-test/cypress/e2e/vite-app2.cy.js",
+      "line": 1,
+      "column": 0,
+      "whitespace": "    ",
+      "stack": "Error\n    at eval (http://localhost:46665/__cypress/tests?p=cypress/e2e/vite-app2.cy.js:9:1)\n    at eval (http://localhost:46665/__cypress/tests?p=cypress/e2e/vite-app2.cy.js:18:12)\n    at eval (<anonymous>)"
+    }
+  },
+  "order": 1,
+  "file": null,
+  "wallClockStartedAt": "2024-09-29T12:35:15.058Z",
+  "_eventsCount": 0,
+  "_cypressTestStatusInfo": {
+    "strategy": "detect-flake-and-pass-on-threshold",
+    "shouldAttemptsContinue": false,
+    "attempts": 1,
+    "outerStatus": "failed"
+  }
+}
