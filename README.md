@@ -1,3 +1,10 @@
+
+docker build -t correctomatic-cypress .
+
+docker run --rm correctomatic-cypress
+
+-----------------------------------
+
 https://medium.com/@pipulpant/handling-custom-errors-in-cypress-f1daf1931b64
 
 

@@ -24,26 +24,26 @@ class MyReporter extends reporters.Base {
     super(runner)
 
     runner.on('start', () => {
-      console.log('Test Suite Started')
+      // console.log('Test Suite Started')
     })
 
     runner.on('pass', (test) => {
-      console.log(`Test Passed: ${test.title}`)
+      // console.log(`Test Passed: ${test.title}`)
       // console.log(safeStringify(test))
-      console.log('-----------------------------------')
+      // console.log('-----------------------------------')
     })
 
     runner.on('fail', (test, err) => {
-      console.log(`Test Failed: ${test.title}`)
-      console.log(`${err.message}`)
+      console.log(`- ${test.title}: ${err.message}`)
+      // console.log(`${err.message}`)
       // console.log(`Test Failed: ${test.title} - ${err.message}`)
       // console.log(safeStringify(test))
       // console.log(safeStringify(err))
-      console.log('-----------------------------------')
+      // console.log('-----------------------------------')
     })
 
     runner.on('end', () => {
-      console.log('Test Suite Ended')
+      // console.log('Test Suite Ended')
     })
   }
 }
