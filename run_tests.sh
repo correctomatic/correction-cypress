@@ -1,32 +1,59 @@
 #!/bin/bash
 
+LOG="S"
+OUTPUT_FILE="/tmp/cypress_output.log"
+
+function log() {
+  if [ "$LOG" == "S" ]; then
+    echo "$1"
+  fi
+}
+
 # Copy the exercise file to the site
 function copy_exercise {
+  log "Copying exercise to site folder..."
   cp /tmp/exercise ./site/index.html
 }
 
-echo "Starting server..."
-# -c-1 is to disable cache
-npx http-server ./site -p 8080 -s -c-1 &
 
-# npx cypress run --quiet --reporter ./reporters/my-reporter.js \
-#       2> /dev/null \
-#       | grep -v '\[STARTED\] Task without title.' | grep -v '\[SUCCESS\] Task without title.'
+function start_server_in_background {
+  log "Starting server..."
+  npx http-server ./site -p 8080 -s -c-1 &
+  server_pid=$!
+  log "Server started with PID $server_pid"
+}
 
-echo "Starting tests..."
+function run_tests {
+  log "Running tests..."
+  npx cypress run --quiet --reporter ./reporters/my-reporter.js > $OUTPUT_FILE
+  tests_exit_code=$?
 
-output_file="/tmp/output.log"
+  log "Tests exit code: $tests_exit_code"
+  if [ $tests_exit_code -eq 0 ]; then
+    log "All tests passed!"
+    return 0
+  else
+    log "Some tests failed."
+    return 1
+  fi
+}
 
-NODE_OPTIONS="--no-warnings" NODE_NO_WARNINGS=1 npx cypress run --quiet --reporter ./reporters/my-reporter.js 2> /dev/null > $output_file
+function fail() {
+  log "Tests failed. Exiting..."
+  # TO-DO: generate correctomatic error response
+  exit 1
+}
 
-if [ $? -eq 0 ]; then
-  echo "All tests passed!"
-else
-  echo "Some tests failed."
+# copy_exercise
+start_server_in_background
+if [[ $? -eq 0 ]]; then
+  fail "El servidor no ha podido iniciar"
 fi
 
+run_tests
+
 echo "Cypress output:"
-cat $output_file | \
+cat $OUTPUT_FILE | \
   grep -v '\[STARTED\] Task without title.' | \
   grep -v '\[SUCCESS\] Task without title.'
 
