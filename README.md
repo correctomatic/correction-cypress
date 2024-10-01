@@ -1,6 +1,10 @@
 
 docker build -t correctomatic-cypress .
 
+registry.correctomatic.org/correction-dwec-ud2-w1-2
+docker tag correctomatic-cypress:latest registry.correctomatic.org/correction-dwec-ud2-w1-2:latest
+docker push registry.correctomatic.org/correction-dwec-ud2-w1-2
+
 docker run --rm correctomatic-cypress
 
 
