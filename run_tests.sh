@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG="S"
+LOG="N"
 OUTPUT_FILE="/tmp/cypress_output.log"
 
 function log() {
@@ -17,13 +17,13 @@ escape_json() {
 }
 
 function enclose_in_separators() {
+  # Using separators mode, because Cypress generates garbage impossible to remove
   echo "---BEGIN CORRECTOMATIC RESPONSE---"
   echo "$1"
   echo "---END CORRECTOMATIC RESPONSE---"
 }
 
 function success_response() {
-  # Using separators mode, because Cypress generates garbage impossible to remove
   GRADE=$1
   COMMENT=$(escape_json "$2")
   json=$(cat <<EOF
@@ -40,18 +40,30 @@ EOF
 }
 
 function error_response() {
-  # Using separators mode, because Cypress generates garbage impossible to remove
-  echo "---BEGIN CORRECTOMATIC RESPONSE---"
-  echo "Some tests failed."
-  echo "---END CORRECTOMATIC RESPONSE---"
+  ERROR=$(escape_json "$1")
+  json=$(cat <<EOF
+{
+  "success": false,
+  "error": "$ERROR"
+}
+EOF
+)
+
+  enclose_in_separators "$json"
+}
+
+function fail() {
+  log "$1"
+  error_response "$1"
+  exit 1
 }
 
 # Copy the exercise file to the site
 function copy_exercise {
   log "Copying exercise to site folder..."
+  mkdir -p ./site
   cp /tmp/exercise ./site/index.html
 }
-
 
 function start_server_in_background {
   log "Starting server..."
@@ -77,21 +89,13 @@ function run_tests {
   fi
 }
 
-function correctomatic_response() {
-  # Using separators mode, because Cypress generates garbage impossible to remove
-  echo "---BEGIN CORRECTOMATIC RESPONSE---"
-  echo "$1"
-  echo "---END CORRECTOMATIC RESPONSE---"
+function get_clean_output() {
+  cat $OUTPUT_FILE | \
+    grep -v '\[STARTED\] Task without title.' | \
+    grep -v '\[SUCCESS\] Task without title.'
 }
 
-function fail() {
-  log "$1"
-  # TO-DO: generate correctomatic error response
-  exit 1
-}
-
-killall http-server
-# copy_exercise
+copy_exercise
 start_server_in_background
 if [[ $? -ne 0 ]]; then
   fail "El servidor no ha podido iniciar"
@@ -101,7 +105,5 @@ run_tests
 if [[ $? -eq 0 ]]; then
   success_response 10 'Buen trabajo'
 else
-  error_response 0 `cat $OUTPUT_FILE`
+  success_response 0 "`get_clean_output`"
 fi
-
-

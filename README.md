@@ -4,7 +4,9 @@ docker build -t correctomatic-cypress .
 docker run --rm correctomatic-cypress
 
 
-docker run --rm -v `pwd`/site/index_ok:/tmp/exercise correctomatic-cypress
+docker run --rm -ti correctomatic-cypress /bin/bash
+
+docker run --rm -v `pwd`/site/index_ok.html:/tmp/exercise correctomatic-cypress
 
 -----------------------------------
 

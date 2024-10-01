@@ -1,5 +1,5 @@
 .gitignore
-/site/** */
 **/screenshots/**
 **/downloads/**
 node_modules
+site
