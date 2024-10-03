@@ -11,8 +11,8 @@ function log() {
 
 escape_json() {
   local input="$1"
-  # Escape double quotes, backslashes and special characters
-  echo "$input" | awk '{
+  # Escape double quotes, backslashes, and special characters while preserving newlines
+  echo "$input" | awk 'BEGIN { ORS="" } {
     gsub(/\\/, "\\\\");
     gsub(/"/, "\\\"");
     gsub(/\n/, "\\n");
@@ -111,5 +111,5 @@ run_tests
 if [[ $? -eq 0 ]]; then
   success_response 10 'Buen trabajo'
 else
-  success_response 0 "`get_clean_output`"
+  success_response 0 "$(get_clean_output)"
 fi
