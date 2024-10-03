@@ -11,9 +11,15 @@ function log() {
 
 escape_json() {
   local input="$1"
-  # Escapar comillas dobles, barra invertida y caracteres especiales
-  input=$(echo "$input" | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | sed 's/\n/\\n/g' | sed 's/\r/\\r/g' | sed 's/\t/\\t/g')
-  echo "$input"
+  # Escape double quotes, backslashes and special characters
+  echo "$input" | awk '{
+    gsub(/\\/, "\\\\");
+    gsub(/"/, "\\\"");
+    gsub(/\n/, "\\n");
+    gsub(/\r/, "\\r");
+    gsub(/\t/, "\\t");
+    printf "%s", $0
+  }'
 }
 
 function enclose_in_separators() {
