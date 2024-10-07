@@ -31,12 +31,11 @@ How to uncompress the project
 
 ### 2. Create the derived container
 
-Once you have the tests working, you can create a derived container with the tests and the configuration. You **must**
-rename the .dockerignore file to .dockerignore.dev to avoid ignoring the cypress folder. There is an script, `build.sh`,
-prepared for building the new container:
+Once you have the tests working, you can create a derived container with the tests and the configuration.
+There is an script, `build.sh`, prepared for building the new container:
 
 ```bash
-./build.sh <container-name>
+./build.sh <container-name:with-tag> <docker-options>
 ```
 
 This will use the `correctomatic/cypress-correction` container as base, saving lots of time and space when creating the
@@ -53,10 +52,11 @@ It should return a valid correctomatic response, with the failed tests descripti
 
 If you want to modify the base container, you can use the build_dev.sh script. This will build the container with the
 Dockerfile.dev file, which will ignore the cypress folder and create a container with the infraestructure needed to
-run the cypress tests in the child containers. It will use `latest` as tag if not specified:
+run the cypress tests in the child containers. It will use `latest` as tag if not specified. The docker options must be
+quoted and will be passed to the `docker build` command, so you can use them to use `--no-cache`, for example.
 
 ```bash
-./build_dev.sh <tag>
+./build_dev.sh <tag> <docker-options>
 ```
 
 You can have a cypress folder with some tests to check that the base container is working correctly: the folder won't be

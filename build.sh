@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
 
+#--------------------------------------------------------------------
+# This script will create the child corrections, for correcting a
+# specific exercise
+#--------------------------------------------------------------------
+
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <container-name>"
+    echo "Usage: $0 <container-name> <docker-options>"
     exit 1
 fi
+CONTAINER_NAME=$1
+DOCKER_OPTIONS=${2:-""}
 
-# Rename .dockerignore to .dockerignore.disabled
-mv .dockerignore .dockerignore.disabled
-
-# Copy the dev .dockerignore to .dockerignore
-cp .dockerignore.dev .dockerignore
-
-# Build the image
-docker build -f ./Dockerfile.correction -t $1 .
-
-
+docker build $DOCKER_OPTIONS -f ./Dockerfile.correction -t "$CONTAINER_NAME" .

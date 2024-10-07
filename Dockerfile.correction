@@ -1,13 +1,7 @@
 FROM correctomatic/cypress-correction:latest
 
-
 WORKDIR /correction
 
-COPY package*.json ./
-RUN yarn install && \
-    rm -rf /usr/local/share/.cache/yarn
-
-COPY . .
-
-# Command to start Vite and run Cypress tests
-CMD ["/correction/run_tests.sh"]
+COPY cypress.config.json .
+COPY .env .
+COPY cypress .
