@@ -15,9 +15,10 @@ You can use this folder for developing the tests, and then create a derived cont
 ### 0. Prepare the git repository
 
 If you want to save the tests in a git repository you will need to set the remote to your repository. You can do that
-with git remote origin command:
+with `git remote` command:
 
 ```bash
+git remote rename origin correctomatic # Rename the original remote to correctomatic, in case you need to push something
 git remote set-url origin <your repo url>
 ```
 
