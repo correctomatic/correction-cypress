@@ -12,6 +12,17 @@ container overriding the necessary files, usually only the tests files in the `c
 
 You can use this folder for developing the tests, and then create a derived container with the tests and the configuration.
 
+### 0. Prepare the git repository
+
+If you want to save the tests in a git repository you will need to set the remote to your repository. You can do that
+with git remote origin command:
+
+```bash
+git remote set-url origin <your repo url>
+```
+
+**TO-DO**: what happens if the base container is updated? How to update the derived containers?
+
 ### 1. Create the tests
 
 Install the dependencies with `yarn install` and then create a set of tests with Cypress:

@@ -4,4 +4,4 @@ WORKDIR /correction
 
 COPY cypress.config.js .
 COPY .env .
-COPY cypress .
+COPY cypress ./cypress
