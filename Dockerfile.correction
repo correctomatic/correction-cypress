@@ -2,6 +2,6 @@ FROM correctomatic/cypress-correction:latest
 
 WORKDIR /correction
 
-COPY cypress.config.json .
+COPY cypress.config.js .
 COPY .env .
 COPY cypress .
