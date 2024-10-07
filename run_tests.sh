@@ -82,7 +82,7 @@ function start_server_in_background {
 
 function run_tests {
   log "Running tests..."
-  npx cypress run --quiet --reporter ./reporters/my-reporter.js > $OUTPUT_FILE
+  npx cypress run --quiet --reporter ./reporters/correctomatic-reporter.js > $OUTPUT_FILE
   tests_exit_code=$?
 
   log "Tests exit code: $tests_exit_code"

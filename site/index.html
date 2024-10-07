@@ -27,25 +27,13 @@
     <p>Párrafo 7</p>
     <p>Párrafo 8</p>
     <p>Párrafo 9</p>
-    <!-- <p>Párrafo 10</p> -->
+
   </div>
 
   <script>
     const parrafos = document.querySelectorAll('#parrafos p');
     const reaparecerBtn = document.getElementById('reaparecer');
 
-    // Ocultar párrafos al hacer clic
-    parrafos.forEach(p => {
-      p.addEventListener('click', () => {
-        p.classList.add('hidden');
-      });
-
-      // Eliminar párrafos del DOM al hacer clic derecho
-      p.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        p.remove();
-      });
-    });
 
     // Reaparecer los párrafos ocultos
     reaparecerBtn.addEventListener('click', () => {
@@ -59,4 +47,3 @@
 
 </body>
 </html>
-

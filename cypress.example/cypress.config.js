@@ -1,7 +1,7 @@
+// This must be in the root of the project, not in the cypress folder
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
-  // reporter: './reporters/my-reporter.js',  // Ruta a tu reportero personalizado
   e2e: {
     defaultCommandTimeout: 500,
     pageLoadTimeout: 2000,
@@ -9,7 +9,6 @@ module.exports = defineConfig({
       on('task', {
         log(message) {
           console.log(message)
-
           return null
         },
       })
