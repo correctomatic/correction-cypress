@@ -1,3 +1,6 @@
+## Things to do:
+- Customize text for OK comment
+- Launch different types of projects (start with a vite project, then generalize)
 
 docker build -t correctomatic-cypress .
 
