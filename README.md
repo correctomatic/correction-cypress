@@ -10,24 +10,23 @@ The recommended way to use this container is to develop the tests in your local 
 container overriding the necessary files, usually only the tests files in the `cypress` folder and the configuration file
 `.env` in the root folder.
 
-
 You can use this folder for developing the tests, and then create a derived container with the tests and the configuration.
 
 ### 1. Create the tests
 
-Create the tests in the `cypress/integration` folder. You can use the `cypress/integration/example.spec.js` file as a template.
+Install the dependencies with `yarn install` and then create a set of tests with Cypress:
+```bash
+yarn install
+yarn cypress open
+```
 
+This will open the Cypress GUI, where you can run the tests and see the results. This **won't** launch the project, so
+you will have to run it in your local machine.
 
-How to create the tests
+You can test what will be the output of the container with the `run_tests.sh`. It will take the exercise from the
+`/tmp/exercise` file, so put there the exercise you want to test.
 
-How to add the project
-  Types of project: vite and single file
-How to uncompress the project
-
-
-
-
-
+**Currently it only allows testing a single HTML file**.
 
 ### 2. Create the derived container
 

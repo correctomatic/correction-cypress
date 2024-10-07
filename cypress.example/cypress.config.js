@@ -1,3 +1,4 @@
+// This must be in the root of the project, not in the cypress folder
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
