@@ -1,5 +1,10 @@
+# This file should be .dockerignore once the build is complete
 .gitignore
 **/screenshots/**
 **/downloads/**
 node_modules
 site
+/cypress
+
+build.sh
+build_dev.sh

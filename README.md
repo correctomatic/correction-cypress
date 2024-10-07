@@ -51,4 +51,17 @@ It should return a valid correctomatic response, with the failed tests descripti
 
 ## Development
 
-If you want to modify the base container, you can use the `docker-compose.dev.yml` file to launch the container in
+If you want to modify the base container, you can use the build_dev.sh script. This will build the container with the
+Dockerfile.dev file, which will ignore the cypress folder and create a container with the infraestructure needed to
+run the cypress tests in the child containers. It will use `latest` as tag if not specified:
+
+```bash
+./build_dev.sh <tag>
+```
+
+You can have a cypress folder with some tests to check that the base container is working correctly: the folder won't be
+copyied to the base container, it's in the `.dockerignore` file. The files under the site folder won't be copied either, so
+some example projects can reside there.
+
+You can run the tests with the `run_tests.sh` script, that is the one that will be used as entrypoint. It will take the
+exercise from the `/tmp/exercise` file, so put there the exercise you want to test.
