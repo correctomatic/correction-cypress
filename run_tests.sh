@@ -23,9 +23,6 @@ function enclose_in_separators() {
 }
 
 function success_response() {
-  echo "*****************************************"
-  echo $2
-  echo "*****************************************"
   GRADE=$1
   COMMENT=$(escape_json "$2")
   json=$(cat <<EOF
@@ -104,7 +101,6 @@ if [[ $? -ne 0 ]]; then
 fi
 
 run_tests
-[[ 2 < 1 ]]
 if [[ $? -eq 0 ]]; then
   success_response 10 'Buen trabajo'
 else
