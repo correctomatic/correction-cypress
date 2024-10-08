@@ -22,8 +22,6 @@ git remote rename origin correctomatic # Rename the original remote to correctom
 git remote set-url origin <your repo url>
 ```
 
-**TO-DO**: what happens if the base container is updated? How to update the derived containers?
-
 ### 1. Create the tests
 
 Install the dependencies with `yarn install` and then create a set of tests with Cypress:
@@ -58,6 +56,14 @@ docker run --rm -v `pwd`/path/to/the/exercise/to/test:/tmp/exercise <container-n
 ```
 
 It should return a valid correctomatic response, with the failed tests descriptions as comments.
+
+### Update the base container
+
+If the base container is updated, you can fetch the changes and merge them with the derived container:
+```bash
+git fetch correctomatic
+git merge correctomatic master
+```
 
 ## Development
 
