@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 LOG="N"
 OUTPUT_FILE="/tmp/cypress_output.log"
@@ -11,15 +11,8 @@ function log() {
 
 escape_json() {
   local input="$1"
-  # Escape double quotes, backslashes, and special characters while preserving newlines
-  echo "$input" | awk 'BEGIN { ORS="" } {
-    gsub(/\\/, "\\\\");
-    gsub(/"/, "\\\"");
-    gsub(/\n/, "\\n");
-    gsub(/\r/, "\\r");
-    gsub(/\t/, "\\t");
-    printf "%s", $0
-  }'
+  # Escape double quotes, backslashes, and convert newlines to \n
+  echo "$input" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g'
 }
 
 function enclose_in_separators() {
@@ -30,6 +23,9 @@ function enclose_in_separators() {
 }
 
 function success_response() {
+  echo "*****************************************"
+  echo $2
+  echo "*****************************************"
   GRADE=$1
   COMMENT=$(escape_json "$2")
   json=$(cat <<EOF
@@ -108,6 +104,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 run_tests
+[[ 2 < 1 ]]
 if [[ $? -eq 0 ]]; then
   success_response 10 'Buen trabajo'
 else
