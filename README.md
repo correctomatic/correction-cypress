@@ -61,8 +61,20 @@ It should return a valid correctomatic response, with the failed tests descripti
 
 If the base container is updated, you can fetch the changes and merge them with the derived container:
 ```bash
+git fetch origin
 git fetch correctomatic
-git merge correctomatic master
+git checkout origin/master
+git merge correctomatic/master
+```
+If there are any conflicts, it's because you've modified files belonging to the base container. You  should discard the
+changes in the derived container, and made them again in the base container.
+
+You can also rebase the derived container with the base container, this can be useful in the early stages of development, when the derived container is not yet published:
+```bash
+git fetch origin
+git fetch correctomatic
+git checkout origin/master
+git rebase correctomatic/master
 ```
 
 ## Development
