@@ -11,7 +11,7 @@ function log() {
 
 escape_json() {
   # Use jq to escape the input
-  echo $1 | jq -R -s '.'
+  echo "$1" | jq -R -s '.'
 }
 
 function enclose_in_separators() {
