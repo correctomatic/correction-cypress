@@ -2,6 +2,8 @@
 .gitignore
 **/screenshots/**
 **/downloads/**
+.vscode
+*.md
 node_modules
 site
 

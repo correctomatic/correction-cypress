@@ -10,9 +10,8 @@ function log() {
 }
 
 escape_json() {
-  local input="$1"
-  # Escape double quotes, backslashes, and convert newlines to \n
-  echo "$input" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g'
+  # Use jq to escape the input
+  echo $1 | jq -R -s '.'
 }
 
 function enclose_in_separators() {
@@ -30,7 +29,7 @@ function success_response() {
   "success": true,
   "grade": $GRADE,
   "comments": [
-    "$COMMENT"
+    $COMMENT
   ]
 }
 EOF
@@ -43,7 +42,7 @@ function error_response() {
   json=$(cat <<EOF
 {
   "success": false,
-  "error": "$ERROR"
+  "error": $ERROR
 }
 EOF
 )
