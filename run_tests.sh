@@ -83,9 +83,12 @@ function run_tests {
 }
 
 function get_clean_output() {
+  # Remove some extra output from the Cypress output
+  # Remove also ANSI color codes and fail-fast messages
   cat $OUTPUT_FILE |
     grep -v '\[STARTED\] Task without title.' |
     grep -v '\[SUCCESS\] Task without title.' |
+    sed -r "s/\x1B\[[0-9;]*[mGKH]//g" |
     sed '/^\[fail-fast\]/d'
 }
 
