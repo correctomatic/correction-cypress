@@ -3,6 +3,7 @@
 .gitignore
 .vscode
 *.md
+cypress.config.js
 /cypress
 site
 

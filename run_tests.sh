@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 
-LOG="N"
+LOG="N" # Y/N
 OUTPUT_FILE="/tmp/cypress_output.log"
+DEFAULT_SUCCESS_MESSAGE="Good job! All tests passed."
 
 function log() {
-  if [ "$LOG" == "S" ]; then
+  if [ "$LOG" == "Y" ]; then
     echo "$1"
   fi
 }
 
 escape_json() {
   # Use jq to escape the input
-  echo "$1" | jq -R -s '.'
+  echo -n "$1" | jq -s -R '.'
 }
 
 function enclose_in_separators() {
@@ -24,7 +25,8 @@ function enclose_in_separators() {
 function success_response() {
   GRADE=$1
   COMMENT=$(escape_json "$2")
-  json=$(cat <<EOF
+  json=$(
+    cat <<EOF
 {
   "success": true,
   "grade": $GRADE,
@@ -33,19 +35,20 @@ function success_response() {
   ]
 }
 EOF
-)
+  )
   enclose_in_separators "$json"
 }
 
 function error_response() {
   ERROR=$(escape_json "$1")
-  json=$(cat <<EOF
+  json=$(
+    cat <<EOF
 {
   "success": false,
   "error": $ERROR
 }
 EOF
-)
+  )
 
   enclose_in_separators "$json"
 }
@@ -65,7 +68,8 @@ function copy_exercise {
 
 function start_server_in_background {
   log "Starting server..."
-  npx http-server ./site -p 8080 -s -c-1 & server_pid=$!
+  npx http-server ./site -p 8080 -s -c-1 &
+  server_pid=$!
   [[ $? -ne 0 ]] && return 1
 
   log "Server started with PID $server_pid"
@@ -74,34 +78,60 @@ function start_server_in_background {
 
 function run_tests {
   log "Running tests..."
-  npx cypress run --quiet --reporter ./reporters/correctomatic-reporter.js > $OUTPUT_FILE
-  tests_exit_code=$?
+  npx cypress run --quiet --reporter ./reporters/correctomatic-reporter.js >$OUTPUT_FILE
+  return $?
+}
 
-  log "Tests exit code: $tests_exit_code"
-  if [ $tests_exit_code -eq 0 ]; then
-    log "All tests passed!"
-    return 0
+function get_clean_output() {
+  cat $OUTPUT_FILE |
+    grep -v '\[STARTED\] Task without title.' |
+    grep -v '\[SUCCESS\] Task without title.' |
+    sed '/^\[fail-fast\]/d'
+}
+
+function extract_tests_result {
+  CLEAN_OUTPUT="$(get_clean_output)"  # Obtener la salida limpia
+
+  # We need to distinguish between the case where the tests failed and the case
+  # where the cypress process failed.
+  # If the run could complete, the output will be enclosed between:
+  # ----------TESTS STARTED----------
+  # ... results ....
+  # ----------TESTS FINISHED----------
+  # If not, Cypress failed to run the tests somehow
+
+  if [[ $CLEAN_OUTPUT =~ ----------TESTS\ STARTED----------(.*?)----------TESTS\ FINISHED---------- ]]; then
+    TEST_RESULTS=$(echo "${BASH_REMATCH[1]}" | awk 'NF')
+    echo -n "$TEST_RESULTS"
   else
-    log "Some tests failed."
+    log "Cypress execution failed"
     return 1
   fi
 }
 
-function get_clean_output() {
-  cat $OUTPUT_FILE | \
-    grep -v '\[STARTED\] Task without title.' | \
-    grep -v '\[SUCCESS\] Task without title.'
+function main() {
+  copy_exercise
+  start_server_in_background
+  if [[ $? -ne 0 ]]; then
+    fail "El servidor no ha podido iniciar"
+  fi
+
+  run_tests
+  TESTS_EXIT_CODE=$?
+
+  if [[ TESTS_EXIT_CODE -eq 0 ]]; then
+    # All tests passed
+    success_response 10 "${SUCCESS_MESSAGE:-$DEFAULT_SUCCESS_MESSAGE}"
+  else
+    TEST_RESULT="$(extract_tests_result)"
+    TESTS_EXIT_CODE=$?
+    if [[ $TESTS_EXIT_CODE -ne 0 ]]; then
+      fail "Error running the correction"
+    fi
+    success_response 0 "$TEST_RESULT"
+  fi
+
 }
 
-copy_exercise
-start_server_in_background
-if [[ $? -ne 0 ]]; then
-  fail "El servidor no ha podido iniciar"
-fi
-
-run_tests
-if [[ $? -eq 0 ]]; then
-  success_response 10 'Buen trabajo'
-else
-  success_response 0 "$(get_clean_output)"
-fi
+source .env
+main
