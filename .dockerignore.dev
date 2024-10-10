@@ -1,11 +1,20 @@
 # This file should be .dockerignore.dev once the build is complete
 # It's used when building the base container, correctomatic/cypress-correction
 .gitignore
+.git
 .vscode
 *.md
-cypress.config.js
+/node_modules
+
+/cypress.example
+/site
 /cypress
-site
+cypress.config.js
+
+Dockerfile*
+.dockerignore*
 
 build.sh
 build_dev.sh
+
+*.log
