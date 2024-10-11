@@ -8,11 +8,13 @@ RUN apt-get update && \
 
 WORKDIR /correction
 
-COPY package*.json ./
+COPY package.json yarn.lock ./
 RUN yarn install && \
     rm -rf /usr/local/share/.cache/yarn
 
-COPY . .
+COPY reporters/ \
+     run_tests.sh \
+     .env \
+     ./
 
-# Command to run the tests
 CMD ["/correction/run_tests.sh"]
